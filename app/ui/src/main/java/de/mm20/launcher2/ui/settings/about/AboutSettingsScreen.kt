@@ -3,8 +3,10 @@ package de.mm20.launcher2.ui.settings.about
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Info
+import androidx.compose.material.icons.rounded.Link
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -76,53 +78,24 @@ fun AboutSettingsScreen() {
                 )
             }
         }
+
+        //**** remove all the links and add the Samyarth website link ****//
+
         item {
             PreferenceCategory(title = stringResource(id = R.string.preference_category_links)) {
                 Preference(
                     icon = Icons.Rounded.GitHub,
-                    title = "GitHub",
-                    summary = "github.com/MM2-0/Kvaesitso",
+                    title = "Website",
+                    summary = "Samyarth website link",
                     onClick = {
                         context.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                            data = Uri.parse("https://github.com/MM2-0/Kvaesitso")
-                        })
-                    }
-                )
-                Preference(
-                    icon = Icons.Rounded.Telegram,
-                    title = stringResource(id = R.string.preference_about_telegram),
-                    summary = "t.me/Kvaesitso",
-                    onClick = {
-                        context.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                            data = Uri.parse("https://t.me/Kvaesitso")
-                        })
-                    }
-                )
-                Preference(
-                    icon = Icons.Rounded.Fdroid,
-                    title = stringResource(id = R.string.preference_about_fdroid),
-                    summary = "fdroid.mm20.de",
-                    onClick = {
-                        context.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                            data =
-                                Uri.parse("https://fdroid.mm20.de")
+                            data = Uri.parse("https://www.samyarth.org/")
                         })
                     }
                 )
             }
         }
-        item {
-            PreferenceCategory(title = stringResource(id = R.string.preference_category_licenses)) {
-                for (library in OpenSourceLicenses.sortedBy { it.name.lowercase() }) {
-                    Preference(
-                        title = library.name,
-                        summary = library.description,
-                        onClick = {
-                            navController?.navigate("settings/license?library=${library.name}")
-                        }
-                    )
-                }
-            }
-        }
+
+        // **** removed the Open Source Licenses **** //
     }
 }
